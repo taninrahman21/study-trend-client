@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const CourseLayout = () => {
   const [courses, setCourses] = useState([]);
@@ -16,11 +16,11 @@ const CourseLayout = () => {
     <div className="flex w-full pl-[80px] bg-gray-200">
       <div className="w-2/5 py-5 text-2xl">
       {
-        courses.map(course => <Link
+        courses.map(course => <NavLink
           key={course.id} 
           to={`/courses/${course.id}`}
-          className='block my-5'
-          >{course.name}</Link>)
+          className={({ isActive }) => isActive ? 'block my-5 font-semibold text-red-800' : 'font-normal block my-5'}
+          >{course.name}</NavLink>)
       }
       </div>
 
