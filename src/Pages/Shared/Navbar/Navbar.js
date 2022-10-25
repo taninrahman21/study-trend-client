@@ -13,13 +13,11 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:block text-[20px] absolute lg:static">
-          <ul className="flex">
-            <li className="mr-4">Home</li>
-            <li className="mr-4">Courses</li>
-            <li className="mr-4">Blogs</li>
-            <li className="mr-4">FAQ</li>
-            <li className="mr-4">Contact Us</li>
-          </ul>
+            <Link to='/home' className="mr-4">Home</Link>
+            <Link to='/courses' className="mr-4">Courses</Link>
+            <Link to='/blogs' className="mr-4">Blogs</Link>
+            <Link to='faq' className="mr-4">FAQ</Link>
+            <Link to='/contact' className="mr-4">Contact Us</Link>
         </div>
 
         <div className="flex items-center">
