@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Login = () => {
+  const [error, setError] = useState('');
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -15,10 +16,14 @@ const Login = () => {
     console.log(email, password);
     signIn(email, password)
     .then(result => {
-      console.log("login successfully")
-      navigate('/home');
+      const user = result.user;
+      console.log(user);
+      navigate('/home');  
+      setError('');
     })
-    .catch(error => console.error(error));
+    .catch(error => {
+      setError(error.message);
+    });
   }
   return (
      <form onSubmit={handleLogin} className='w-2/4 mx-auto border rounded-lg p-8 my-10'>
@@ -34,8 +39,8 @@ const Login = () => {
             <span className="label-text">Password</span>
           </label>
           <input type="text" name='password' placeholder="password" className="input input-bordered" required/>
-      
         </div>
+        <p className='text-red-500 mt-2'>{error}</p>
         <div className="form-control mt-6">
           <button className="btn btn-primary" type='submit'>Login</button>
         </div>
