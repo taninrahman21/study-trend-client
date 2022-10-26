@@ -9,7 +9,7 @@ const Course = ({course}) => {
       <img className="h-[220px] w-full rounded-lg" src={photo} alt="" />
       <div className="flex justify-between items-center">
       <h2 className="text-2xl font-semibold mt-2">{name}</h2>
-      <FaCloudDownloadAlt title="Download pdf" className="text-3xl "/>
+       <FaCloudDownloadAlt title="Download pdf" className="text-3xl "/>
       </div>
       <div className="flex items-center text-gray-700 mt-3">
         <FaClock className="mr-2"/>

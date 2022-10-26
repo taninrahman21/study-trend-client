@@ -7,6 +7,7 @@ import { AuthContext } from "../../../contexts/UserContext/UserContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState(false);
   const { user, logOut } = useContext(AuthContext);
 
 
@@ -28,7 +29,11 @@ const Navbar = () => {
             <Link to='/courses' className="mr-4">Courses</Link>
             <Link to='/blogs' className="mr-4">Blogs</Link>
             <Link to='faq' className="mr-4">FAQ</Link>
-            <Link to='/contact' className="mr-4">Contact Us</Link>
+            <div onClick={() => setTheme(!theme)} className="mr-4 inline">
+              {
+                theme ? <button className="btn btn-sm btn-primary">Dark</button> : <button className="btn btn-sm">Light</button>
+              }
+            </div>
         </div>
 
         <div className="flex items-center">

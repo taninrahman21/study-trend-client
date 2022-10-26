@@ -13,9 +13,9 @@ const CourseLayout = () => {
   }, []);
 
   return (
-    <div className="flex w-full pl-[80px] bg-gray-200">
-      <div className="w-2/5 py-5 text-2xl">
-        <div className="sticky top-24">
+    <div className="flex flex-col-reverse lg:flex-row w-full lg:pl-[80px] bg-gray-200">
+      <div className="lg:w-2/5 py-5 text-2xl">
+        <div className="lg:sticky lg:top-24 text-center lg:text-start">
           {courses.map((course) => (
             <NavLink
               key={course.id}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { AuthContext } from '../../contexts/UserContext/UserContext';
 
@@ -9,7 +9,9 @@ const Register = () => {
   const [error, setError] = useState('');
   const { signUp, updateUserProfile, signInWithGoogle, signInWithFacebook  } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const location = useLocation();
+  
+  const form = location?.state?.form?.pathname || "/";
   
 
   // Create User
@@ -25,11 +27,13 @@ const Register = () => {
     .then(result => {
       const user = result.user;
       handleUserProfile(name, photo);
-      console.log(user);
       setError('');
-      navigate('/');
+      navigate(form, {replace: true});
     })
-    .catch(error => setError(error.message));
+    .catch(error => {
+      console.log(error);
+      setError(error.message);
+    });
   }
   // Create User
 
@@ -48,7 +52,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/home");
+        navigate(form, {replace: true});
       })
       .catch((error) => console.error(error));
   };
@@ -57,7 +61,7 @@ const Register = () => {
     signInWithFacebook()
     .then(result => {
       console.log(result.user);
-      navigate("/home");
+      navigate(form, {replace: true});
     })
     .catch(error => console.error(error));
   } 

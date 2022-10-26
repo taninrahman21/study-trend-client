@@ -22,11 +22,11 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         navigate(form, {replace: true});
         setError("");
       })
       .catch((error) => {
+        console.error(error);
         setError(error.message);
       });
   };
@@ -51,7 +51,7 @@ const Login = () => {
     .catch(error => console.error(error));
   } 
   return (
-    <div className="w-2/4 mx-auto border rounded-lg px-8 pt-8 pb-4 my-10">
+    <div className="w-11/12 lg:w-2/4 mx-auto border rounded-lg px-8 pt-8 pb-4 my-10">
       <form onSubmit={handleLogin}>
         <h2 className="text-center text-2xl font-bold">Login Now</h2>
         <div className="form-control">
