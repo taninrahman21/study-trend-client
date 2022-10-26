@@ -1,9 +1,11 @@
 import React from 'react';
-// import { useContext } from 'react';
-// import { AuthContext } from '../../contexts/UserContext/UserContext';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Login = () => {
-  // const {user} = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogin = event => {
     event.preventDefault();
@@ -11,6 +13,12 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signIn(email, password)
+    .then(result => {
+      console.log("login successfully")
+      navigate('/home');
+    })
+    .catch(error => console.error(error));
   }
   return (
      <form onSubmit={handleLogin} className='w-2/4 mx-auto border rounded-lg p-8 my-10'>

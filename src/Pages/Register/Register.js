@@ -5,6 +5,8 @@ import { AuthContext } from '../../contexts/UserContext/UserContext';
 const Register = () => {
   const { signUp } = useContext(AuthContext);
   
+
+  // Create User
   const handleRegister = event => {
     event.preventDefault();
     const form = event.target;
@@ -20,6 +22,7 @@ const Register = () => {
     })
     .catch(error => console.error(error));
   }
+  // Create User
   return (
     <div>
         <form onSubmit={handleRegister} className='w-2/4 mx-auto border rounded-lg p-8 my-10'>
@@ -46,7 +49,7 @@ const Register = () => {
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="text" name='password' placeholder="password" className="input input-bordered" required/>
+          <input type="password" name='password' placeholder="password" className="input input-bordered" required/>
       
         </div>
         <div className="form-control mt-6">
