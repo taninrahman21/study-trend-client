@@ -38,12 +38,12 @@ export const routes = createBrowserRouter([
           {
             path: '/courses',
             element: <Courses></Courses>,
-            loader: () => fetch('http://localhost:5000/courses')
+            loader: () => fetch('https://study-trend-server.vercel.app/courses')
           },
           {
             path: '/courses/:id',
             element: <CourseDetails></CourseDetails>,
-            loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+            loader: ({params}) => fetch(`https://study-trend-server.vercel.app/${params.id}`)
           }
         ]
       },
