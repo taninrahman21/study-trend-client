@@ -6,7 +6,7 @@ import { useState } from "react";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="bg-slate-800 text-white">
+    <div className="bg-slate-700 text-white sticky top-0 z-10">
       <nav className="container w-11/12 mx-auto flex justify-between items-center py-3">
         <div>
           <Link to="/">Study Trend</Link>
@@ -22,11 +22,9 @@ const Navbar = () => {
 
         <div className="flex items-center">
           <button className="btn btn-sm btn-outline btn-success mr-2">
-            Login
-          </button>
+            <Link to='/login'>Login</Link></button>
           <button className="btn btn-sm btn-outline btn-success">
-            Register
-          </button>
+          <Link to='/register'>Register</Link></button>
           <div
             className="lg:hidden ml-2 text-2xl"
             onClick={() => setOpen(!open)}
