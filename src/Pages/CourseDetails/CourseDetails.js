@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const CourseDetails = () => {
   const course = useLoaderData();
-  const {name,description, photo, classTime, author, price} = course;
+  const {name, description, photo, classTime, author, price} = course;
   return (
     <div className='py-10'>
       <img className='h-[400px] w-full' src={photo} alt="course-cover" />
@@ -12,7 +12,7 @@ const CourseDetails = () => {
       <p><span className='font-semibold'>Price:</span> ${price}</p>
       <p><span className='font-semibold'>Class Time:</span> {classTime}</p>
       <p><span className='font-semibold'>Instructor:</span> {author.name}, {author.proffesion}</p>
-      <h2><span className='font-semibold'>About {name}:</span> {description}</h2>
+      <h2 className='mt-3'><span className='font-semibold'>About {name}:</span> {description}</h2>
       </div>
     </div>
   );

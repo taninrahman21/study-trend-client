@@ -2,7 +2,6 @@ import React from "react";
 import { FaClock, FaCloudDownloadAlt, FaUser } from "react-icons/fa";
 
 const Course = ({course}) => {
-  console.log(course);
   const { name, classTime, photo, author, price } = course;
   return (
     <div className="border px-4 py-3 rounded-lg">

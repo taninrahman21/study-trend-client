@@ -1,6 +1,10 @@
 import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/UserContext/UserContext";
 
 const Home = () => {
+  const {user} = useContext(AuthContext);
+  console.log(user);
   return (
       <div
         className="hero min-h-screen"
