@@ -1,5 +1,5 @@
 import React from "react";
-import { FaStopwatch, FaUser } from "react-icons/fa";
+import { FaClock, FaCloudDownloadAlt, FaUser } from "react-icons/fa";
 
 const Course = ({course}) => {
   console.log(course);
@@ -7,9 +7,12 @@ const Course = ({course}) => {
   return (
     <div className="border px-4 py-3 rounded-lg">
       <img className="h-[220px] w-full rounded-lg" src={photo} alt="" />
+      <div className="flex justify-between items-center">
       <h2 className="text-2xl font-semibold mt-2">{name}</h2>
+      <FaCloudDownloadAlt title="Download pdf" className="text-3xl "/>
+      </div>
       <div className="flex items-center text-gray-700 mt-3">
-        <FaStopwatch className="mr-2"/>
+        <FaClock className="mr-2"/>
         <p>{classTime}</p>
       </div>
       <div className="flex items-center text-gray-700">
