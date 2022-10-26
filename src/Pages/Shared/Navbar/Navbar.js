@@ -1,15 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaRegWindowClose } from "react-icons/fa";
+import { FaBars, FaRegWindowClose, FaUser } from "react-icons/fa";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/UserContext/UserContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+
+
+  const handleLogOut = () => {
+    logOut()
+    .then(() => { })
+    .catch( error => console.error(error));
+  }
+  
   return (
     <div className="bg-slate-700 text-white sticky top-0 z-10">
       <nav className="container w-11/12 mx-auto flex justify-between items-center py-3">
         <div>
-          <Link to="/">Study Trend</Link>
+          <Link to="/" className="text-[20px]">Study Trend</Link>
         </div>
 
         <div className="hidden lg:block text-[20px] absolute lg:static">
@@ -21,10 +32,20 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center">
-          <button className="btn btn-sm btn-outline btn-success mr-2">
+          {
+          user?.uid ? <>
+          <h1 className="mr-2">{user?.displayName}</h1>
+          {
+            user.photoURL ? <img style={{width: "35px"}} className='rounded-full mr-2' src={user.photoURL} alt="" />
+            : <FaUser className="text-white mr-2"/> 
+          }
+          <button onClick={handleLogOut} className="btn btn-sm btn-outline btn-success ">Logout</button>
+          </> 
+          : <><button className="btn btn-sm btn-outline btn-success mr-2">
             <Link to='/login'>Login</Link></button>
           <button className="btn btn-sm btn-outline btn-success">
-          <Link to='/register'>Register</Link></button>
+          <Link to='/register'>Register</Link></button></>
+          }
           <div
             className="lg:hidden ml-2 text-2xl"
             onClick={() => setOpen(!open)}

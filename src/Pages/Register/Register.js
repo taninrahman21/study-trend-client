@@ -27,6 +27,7 @@ const Register = () => {
       handleUserProfile(name, photo);
       console.log(user);
       setError('');
+      navigate('/');
     })
     .catch(error => setError(error.message));
   }

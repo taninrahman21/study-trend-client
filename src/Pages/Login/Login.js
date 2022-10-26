@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/UserContext/UserContext";
 
 const Login = () => {
   const [error, setError] = useState("");
   const { signIn, signInWithGoogle, signInWithFacebook } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const form = location?.state?.form?.pathname || "/";
 
   // Handle form login
   const handleLogin = (event) => {
@@ -20,7 +23,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/home");
+        navigate(form, {replace: true});
         setError("");
       })
       .catch((error) => {
@@ -34,7 +37,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/home");
+        navigate(form, {replace: true});
       })
       .catch((error) => console.error(error));
   };
@@ -43,7 +46,7 @@ const Login = () => {
     signInWithFacebook()
     .then(result => {
       console.log(result.user);
-      navigate("/home");
+      navigate(form, {replace: true});
     })
     .catch(error => console.error(error));
   } 
@@ -68,7 +71,7 @@ const Login = () => {
             <span className="label-text">Password</span>
           </label>
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="password"
             className="input input-bordered"

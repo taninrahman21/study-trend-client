@@ -9,6 +9,8 @@ import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 import NotFound from "../../Pages/NotFound/NotFound";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import CourseCheackout from "../../Pages/CourseCheackout/CourseCheackout";
 
 export const routes = createBrowserRouter([
   {
@@ -46,6 +48,10 @@ export const routes = createBrowserRouter([
             loader: ({params}) => fetch(`https://study-trend-server.vercel.app/courses/${params.id}`)
           }
         ]
+      },
+      {
+        path: '/course/cheackout/:id',
+        element: <PrivateRoute><CourseCheackout/></PrivateRoute>
       },
       {
         path: '/blogs', 
