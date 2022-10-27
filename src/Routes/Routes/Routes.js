@@ -59,7 +59,7 @@ export const routes = createBrowserRouter([
         element: <Blogs></Blogs>
       },
       {
-        path: 'faq',
+        path: '/faq',
         element: <Faq></Faq>
       }
       

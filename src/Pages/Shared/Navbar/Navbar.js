@@ -4,6 +4,7 @@ import { FaBars, FaRegWindowClose, FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/UserContext/UserContext";
+import ReactTooltip from "react-tooltip";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -28,7 +29,7 @@ const Navbar = () => {
             <Link to='/home' className="mr-4">Home</Link>
             <Link to='/courses' className="mr-4">Courses</Link>
             <Link to='/blogs' className="mr-4">Blogs</Link>
-            <Link to='faq' className="mr-4">FAQ</Link>
+            <Link to='/faq' className="mr-4">FAQ</Link>
             <div onClick={() => setTheme(!theme)} className="mr-4 inline">
               {
                 theme ? <button className="btn btn-sm btn-primary">Dark</button> : <button className="btn btn-sm">Light</button>
@@ -39,10 +40,9 @@ const Navbar = () => {
         <div className="flex items-center">
           {
           user?.uid ? <>
-          <h1 className="mr-2">{user?.displayName}</h1>
-          {
-            user.photoURL ? <img title={user?.displayName} style={{width: "35px"}} className='rounded-full mr-2' src={user.photoURL} alt="" />
-            : <div title={user?.displayName}><FaUser className="text-white mr-2"/></div>
+           {
+            user.photoURL ? <img data-tip data-for="profileTip" style={{width: "35px"}} className='rounded-full mr-2' src={user.photoURL} alt="" />
+            : <FaUser data-tip data-for="profileTip" className="text-white mr-2"/>
           }
           <button onClick={handleLogOut} className="btn btn-sm btn-outline btn-success ">Logout</button>
           </> 
@@ -63,13 +63,16 @@ const Navbar = () => {
           <Link to='/home' className="mb-2 placeholder:">Home</Link>
           <Link to='/courses' className="mb-2 ">Courses</Link>
           <Link to='/blogs' className="mb-2 ">Blogs</Link>
-          <Link to='/blogs' className="mb-2">FAQ</Link>
+          <Link to='/faq' className="mb-2">FAQ</Link>
           <div onClick={() => setTheme(!theme)} className="mr-4 inline">
               {
                 theme ? <button className="btn btn-sm btn-primary">Dark</button> : <button className="btn btn-sm">Light</button>
               }
           </div>
         </div>
+        <ReactTooltip id="profileTip" place="bottom" effect="solid">
+        {user?.displayName ? user.displayName : "No User Name"}
+      </ReactTooltip>
     </div>
   );
 };
