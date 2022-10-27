@@ -9,9 +9,6 @@ const Register = () => {
   const [error, setError] = useState('');
   const { signUp, updateUserProfile, signInWithGoogle, logOut, signInWithFacebook  } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation();
-  
-  const from = location?.state?.form?.pathname || "/";
   
 
   // Create User
@@ -54,7 +51,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, {replace: true});
+        navigate('/');
       })
       .catch((error) => console.error(error));
   };
@@ -63,7 +60,7 @@ const Register = () => {
     signInWithFacebook()
     .then(result => {
       console.log(result.user);
-      navigate(from, {replace: true});
+      navigate('/');
     })
     .catch(error => console.error(error));
   } 
