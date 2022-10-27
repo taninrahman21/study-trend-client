@@ -51,7 +51,8 @@ export const routes = createBrowserRouter([
       },
       {
         path: '/course/cheackout/:id',
-        element: <PrivateRoute><CourseCheackout/></PrivateRoute>
+        element: <PrivateRoute><CourseCheackout/></PrivateRoute>,
+        loader: ({params}) => fetch(`https://study-trend-server.vercel.app/courses/${params.id}`)
       },
       {
         path: '/blogs', 

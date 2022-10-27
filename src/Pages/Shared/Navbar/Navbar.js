@@ -64,7 +64,11 @@ const Navbar = () => {
           <Link to='/courses' className="mb-2 ">Courses</Link>
           <Link to='/blogs' className="mb-2 ">Blogs</Link>
           <Link to='/blogs' className="mb-2">FAQ</Link>
-          <Link to='/contact' className="mb-2">Contact Us</Link>
+          <div onClick={() => setTheme(!theme)} className="mr-4 inline">
+              {
+                theme ? <button className="btn btn-sm btn-primary">Dark</button> : <button className="btn btn-sm">Light</button>
+              }
+          </div>
         </div>
     </div>
   );

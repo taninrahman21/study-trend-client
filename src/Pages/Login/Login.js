@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const form = location?.state?.form?.pathname || "/";
+  const from = location?.state?.form?.pathname || "/";
 
   // Handle form login
   const handleLogin = (event) => {
@@ -22,8 +22,9 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        navigate(form, {replace: true});
+        console.log(user);
         setError("");
+        navigate(from, {replace: true});
       })
       .catch((error) => {
         console.error(error);
@@ -37,7 +38,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(form, {replace: true});
+        navigate(from, {replace: true});
       })
       .catch((error) => console.error(error));
   };
@@ -46,7 +47,7 @@ const Login = () => {
     signInWithFacebook()
     .then(result => {
       console.log(result.user);
-      navigate(form, {replace: true});
+      navigate(from, {replace: true});
     })
     .catch(error => console.error(error));
   } 

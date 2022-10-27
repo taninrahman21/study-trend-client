@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PdfFile = () => {
+const PdfFile = ({course}) => {
   return (
     <div>
     </div>

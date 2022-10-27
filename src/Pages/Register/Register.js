@@ -7,11 +7,11 @@ import { AuthContext } from '../../contexts/UserContext/UserContext';
 
 const Register = () => {
   const [error, setError] = useState('');
-  const { signUp, updateUserProfile, signInWithGoogle, signInWithFacebook  } = useContext(AuthContext);
+  const { signUp, updateUserProfile, signInWithGoogle, logOut, signInWithFacebook  } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   
-  const form = location?.state?.form?.pathname || "/";
+  const from = location?.state?.form?.pathname || "/";
   
 
   // Create User
@@ -26,9 +26,11 @@ const Register = () => {
     signUp(email, password)
     .then(result => {
       const user = result.user;
-      handleUserProfile(name, photo);
+      console.log(user);
+      logOut();
       setError('');
-      navigate(form, {replace: true});
+      handleUserProfile(name, photo);
+      navigate('/login');
     })
     .catch(error => {
       console.log(error);
@@ -52,7 +54,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(form, {replace: true});
+        navigate(from, {replace: true});
       })
       .catch((error) => console.error(error));
   };
@@ -61,12 +63,12 @@ const Register = () => {
     signInWithFacebook()
     .then(result => {
       console.log(result.user);
-      navigate(form, {replace: true});
+      navigate(from, {replace: true});
     })
     .catch(error => console.error(error));
   } 
   return (
-    <div className='w-2/4 mx-auto border rounded-lg p-8 my-10'>
+    <div className='w-11/12 lg:w-2/4 mx-auto border rounded-lg p-8 my-10'>
         <form onSubmit={handleRegister}>
         <div className="form-control">
         <h2 className='text-center text-2xl font-bold'>Register Now</h2>
