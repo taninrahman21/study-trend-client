@@ -39,7 +39,7 @@ const Navbar = () => {
         <div className="flex items-center">
           {
           user?.uid ? <>
-          <h1 className="mr-2">{user?.displayName ? user.displayName : "No User Name"}</h1>
+          <h1 className="mr-2 hidden lg:block">{user?.displayName ? user.displayName : "No User Name"}</h1>
            {
             user.photoURL ? <img title={user?.displayName ? user.displayName : "No User Name"} style={{width: "35px"}} className='rounded-full mr-2' src={user.photoURL} alt="" />
             : <FaUser title={user?.displayName ? user.displayName : "No User Name"} className="text-white mr-2"/>
