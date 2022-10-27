@@ -4,7 +4,6 @@ import { FaBars, FaRegWindowClose, FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/UserContext/UserContext";
-import ReactTooltip from "react-tooltip";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -40,9 +39,10 @@ const Navbar = () => {
         <div className="flex items-center">
           {
           user?.uid ? <>
+          <h1 className="mr-2">{user?.displayName ? user.displayName : "No User Name"}</h1>
            {
-            user.photoURL ? <img data-tip data-for="profileTip" style={{width: "35px"}} className='rounded-full mr-2' src={user.photoURL} alt="" />
-            : <FaUser data-tip data-for="profileTip" className="text-white mr-2"/>
+            user.photoURL ? <img title={user?.displayName ? user.displayName : "No User Name"} style={{width: "35px"}} className='rounded-full mr-2' src={user.photoURL} alt="" />
+            : <FaUser title={user?.displayName ? user.displayName : "No User Name"} className="text-white mr-2"/>
           }
           <button onClick={handleLogOut} className="btn btn-sm btn-outline btn-success ">Logout</button>
           </> 
@@ -70,9 +70,6 @@ const Navbar = () => {
               }
           </div>
         </div>
-        <ReactTooltip id="profileTip" place="bottom" effect="solid">
-        {user?.displayName ? user.displayName : "No User Name"}
-      </ReactTooltip>
     </div>
   );
 };
