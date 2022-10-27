@@ -41,8 +41,8 @@ const Navbar = () => {
           user?.uid ? <>
           <h1 className="mr-2">{user?.displayName}</h1>
           {
-            user.photoURL ? <img style={{width: "35px"}} className='rounded-full mr-2' src={user.photoURL} alt="" />
-            : <FaUser className="text-white mr-2"/> 
+            user.photoURL ? <img title={user?.displayName} style={{width: "35px"}} className='rounded-full mr-2' src={user.photoURL} alt="" />
+            : <div title={user?.displayName}><FaUser className="text-white mr-2"/></div>
           }
           <button onClick={handleLogOut} className="btn btn-sm btn-outline btn-success ">Logout</button>
           </> 
